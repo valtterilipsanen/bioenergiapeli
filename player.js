@@ -1,7 +1,8 @@
 
-function player(x,y,speed,dir) {
+function player(x,y,r,speed,dir) {
  this.x = x;
  this.y = y;
+ this.r = r;
  this.speed = speed;
  this.dir = dir;
 
@@ -15,46 +16,76 @@ var width = Math.min(window.innerWidth - 25, 1920);
 var height = Math.min(window.innerHeight - 25, 1276) - 100;
 
 
-var p = new player(width / 2,height / 2,pSpeed, 0);
+var p = new player(width / 2, height / 2, 20, pSpeed, 0);
 
+function changeDir(dir) {
+  switch(dir) {
+    case "left":
+    p.dir = p.dir - 0.07
+    break;
+    case "right":
+    p.dir = p.dir + 0.07
+    break;
+  }
+}
 
-
-function drawPlayer(ctx, keys) {
+function drawPlayer(context) {
   var x = p.x;
   var y = p.y;
-  ctx.fillStyle = '#FF0000';
-  ctx.fillRect(x,y,20,20);
+  context.beginPath();
+  context.fillStyle = '#FF0000';
+  context.arc(x, y, p.r, 0, 2*Math.PI);
+  context.fill();
+  context.closePath();
 }
 
 
 
 
 
-function movePlayer(dir) {
-  switch (dir) {
+function movePlayer() {
+
+var x = p.speed * Math.cos(p.dir);
+var y = p.speed * Math.sin(p.dir);
+var oldX = p.x;
+var oldY = p.y;
+
+p.x = p.x + x;
+p.y = p.y + y;
+
+if(p.x <= p.r ||p.x >= width - p.r){
+  p.x = oldX;
+}
+if(p.y <= p.r || p.y >= height - p.r){
+  p.y = oldY;
+}
+
+
+/*  switch (dir) {
     case "left":
-      player.x -= player.speed;
-      if (player.x < 20) {
-        player.x = 20;
+      p.x -= p.speed;
+      if (p.x < 20) {
+        p.x = 20;
       }
       break;
     case "right":
-      player.x += player.speed;
-      if (player.x > width - 20) {
-        player.x = width - 20;
+      p.x += p.speed;
+      if (p.x > width - 20) {
+        p.x = width - 20;
       }
       break;
     case "up":
-      player.y -= player.speed;
-      if (player.y < 20) {
-        player.y = 20;
+      p.y -= p.speed;
+      if (p.y < 20) {
+        p.y = 20;
       }
       break;
     case "down":
-      player.y += player.speed;
-      if (player.y > height - 20) {
-        player.y = height - 20;
+      p.y += p.speed;
+      if (p.y > height - 20) {
+        p.y = height - 20;
       }
       break;
   }
+  */
 }
