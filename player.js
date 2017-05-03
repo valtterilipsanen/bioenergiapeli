@@ -60,6 +60,30 @@ if(p.y <= p.r || p.y >= height - p.r){
   p.y = oldY;
 }
 
+for(i = 0; i < cows.length; i++){
+var e = cows[i];
+var dist = Math.sqrt(Math.pow((p.x - e.x),2) + Math.pow((p.y - e.y),2));
+if(dist < p.r + e.r){
+  killCow(i);
+ }
+}
+
+ for(i = 0; i < hippies.length; i++){
+ var e = hippies[i];
+ var dist = Math.sqrt(Math.pow((p.x - e.x),2) + Math.pow((p.y - e.y),2));
+ if(dist < p.r + e.r){
+   killHippie(i);
+  }
+}
+
+for(i = 0; i < gMen.length; i++){
+var e = gMen[i];
+var dist = Math.sqrt(Math.pow((p.x - e.x),2) + Math.pow((p.y - e.y),2));
+if(dist < p.r + e.r){
+  killGMan(i);
+ }
+}
+
 
 /*  switch (dir) {
     case "left":

@@ -36,7 +36,10 @@ var render = function() {
   ctx.fillRect(0,0,width,height);
   movePlayer();
   moveGMen();
+  moveCows();
   drawHippies(ctx);
+  drawPoops(ctx);
+  drawCows(ctx);
   drawGMen(ctx)
   drawPlayer(ctx);
 

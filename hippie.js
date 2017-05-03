@@ -17,7 +17,7 @@ function drawHippies(context) {
     var x = e.x;
     var y = e.y;
     context.beginPath();
-    context.fillStyle = '#FFFF00';
+    context.fillStyle = '#00FF00';
     context.arc(x, y, e.r, 0, 2*Math.PI);
     context.fill();
     context.closePath();
