@@ -7,8 +7,8 @@ function cow(x,y,r,speed,dir) {
 }
 
 
-var width = window.innerWidth - 25;
-var height = window.innerHeight - 25;
+var width = 900;
+var height = 700;
 var eSize = 20;
 var eSpeed = 2;
 

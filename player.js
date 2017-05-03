@@ -9,11 +9,11 @@ function player(x,y,r,speed,dir) {
 
 }
 var pSpeed = 4;
-var windowWidth = Math.max(window.innerWidth - 25, 1150);
-var windowHeight = window.innerHeight - 25;
+var windowWidth = 900;
+var windowHeight = 700;
 
-var width = Math.min(window.innerWidth - 25, 1920);
-var height = Math.min(window.innerHeight - 25, 1276) - 100;
+var width = 900;
+var height = 700;
 
 
 var p = new player(width / 2, height / 2, 20, pSpeed, 0);

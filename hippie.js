@@ -31,3 +31,7 @@ function moveHippies() {
 
   }
 }
+
+function killHippie(index){
+  hippies.splice(index,1);
+}

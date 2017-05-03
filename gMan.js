@@ -49,3 +49,7 @@ function moveGMen() {
     e.y = e.y + y;
     }
 }
+
+function killGMan(index){
+  gMen.splice(index,1);
+}
