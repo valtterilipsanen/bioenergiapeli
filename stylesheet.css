@@ -1,0 +1,349 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css?family=Acme');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.background {
+    background-image: url(assets/tausta.jpg);
+    background-color: rgb(56, 57, 26);
+}
+.navigation {
+    width: 100%;
+    background-color: rgb(0, 100, 0);
+    text-align:center;
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    right:0px;
+    border-width: 4px;
+    border-color: rgb(0,50,0);
+    border-style:solid;
+    z-index: 9999;
+}
+.navigation ul{
+    margin-right: 20px;
+    
+}
+.navigation li {
+    display: inline-block; 
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.navigation a {
+    margin-right: 7px;
+    margin-left: 7px;
+    text-decoration: none;
+    text-decoration-color: black;
+    color: black; 
+    font-size: 14px;
+    font-family: 'Acme',regular;
+    transition:1s;
+    
+}
+.navigation a:hover{
+    color:rgb(117, 255, 117);
+}
+
+.can {
+    margin-left: 10px;
+    margin-top: 10px;
+    max-width: 1920px;
+    max-height: 1276px;
+}
+.header {
+    transition: 1s;
+    background-image: url(assets/otsikko.jpg);
+    width: 100%;
+    border-width: 4px;
+    border-color: rgb(0,50,0);
+    border-style:solid;
+    text-align: center;
+    margin-top: 64px;
+}
+#headerBackground{
+    transition: 1s;
+    position: static;
+    background-color: rgba(0,100,0,0.7);
+    margin-top: 10%;
+    margin-bottom: 10%;
+    width: 80%;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#footerNotes{
+    margin-top: 0px;
+}
+.footerInfo{
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#headline{
+    width: 100%
+}
+.margins{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.links a{
+    color: #d3c309;
+}
+.links a:hover{
+    color: chartreuse;
+}
+#coop{
+    margin: 5px;
+    text-decoration: underline;
+    font-family: 'Acme',regular;
+}
+
+.buttons{
+    border-radius: 5px;
+    background-color: #50500b;
+    border-color: rgb(0,50,0);
+    display: inline-block;
+    font-family: 'Acme',regular;
+    outline: none !important;
+}
+.buttons:focus{
+    outline: none !important;
+}
+
+.buttons:hover{
+    background-color: #6c6c0d;
+}
+
+.footer{
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgba(0,100,0,0.8);
+    border-width: 4px;
+    border-color: rgb(0,50,0);
+    border-style: solid;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 10px;
+    font-family: 'Montserrat',regular; 
+}
+.videoContainer{
+    width: 80%;
+    max-width: 600px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;  
+}
+.videoContainer iframe{
+    border-width: 0px;
+    width: 100%;
+    height: auto;
+}
+
+#cover{
+    min-height: 300px;
+}
+.text {
+    max-width: 1080px;
+    text-align: center;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    background-color: rgba(0,100,0,0.8);
+    border-width: 4px;
+    border-color: rgb(0,50,0);
+    border-radius: 5px;
+    border-style: solid;
+    margin-top: 10px;
+    margin-left:5%;
+    margin-right: 5%;
+    font-size: 15px;
+    font-family: 'Montserrat',regular;
+}
+.text article{
+ padding-bottom: 10px;
+    padding-top: 10px;
+}
+#image{
+    transition: 1s;
+    width: 80%;
+    border-width: 4px;
+    border-style: solid;
+    border-color: #574938;
+    border-radius: 5px;
+}
+
+#slideshow{
+    font-family: 'Acme',regular;
+    color: #d3c309;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 4px;
+    border-style: solid;
+    border-color: #574938;
+    border-radius: 5px;
+}
+#slideshow {
+    background-size: cover;
+}
+
+#logo{
+    width: 100px;
+}
+#poster{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 414px;
+}
+
+#index{
+    text-decoration: underline;
+}
+#media{
+    text-decoration: underline;
+}
+#contacts{
+    text-decoration: underline;
+}
+#info{
+    text-decoration: underline;
+}
+@media screen and (min-width: 400px){
+    .navigation a{
+        font-size: 18px;
+    }
+    .navigation li{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    
+    .footer{
+        font-size: 15px;
+    }
+    #logo{
+        width: 150px;
+    }
+    #cover{
+        min-height: 250px;
+    }
+
+}
+@media screen and (min-width:600px){
+    .navigation a{
+        font-size: 30px;
+    }
+    .navigation li{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .text{
+       font-size: 25px; 
+    }
+    .list{
+        font-size: 20px;
+    }
+    .header{
+        margin-top: 87px;
+        font-size: 27px;
+    }
+    .footer{
+        font-size: 15px;
+    }
+    #logo{
+        width: 150px;
+    }
+    .videoContainer{
+        height: 350px;
+    }
+    .videoContainer iframe{
+        height: 350px;
+    }
+    
+    #cover{
+        min-height: 390px;
+    }
+}
+@media screen and (min-width:800px){
+    .navigation a{
+        font-size: 35px;
+    }
+    .navigation li{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .text{
+       font-size: 32px; 
+    }
+    
+    .list{
+        font-size: 35px;
+        margin-left: auto;
+        margin-right:auto;
+    }
+    .header{
+        margin-top: 95px;
+        font-size: 35px;
+    }
+    .footer{
+        font-size: 20px;
+    }
+    #logo{
+        width: 200px;
+    }
+    #cover{
+        min-height: 500px;
+    }
+}
+@media screen and (min-width:1080px){
+   .navigation a{
+        font-size: 20px;
+    }
+    .navigation li{
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .text{
+        width: 800px;
+        font-size: 15px;
+        margin-left: auto;
+        margin-right:auto;
+    }
+    .margins{
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+    }
+   
+    .header{
+        width: 100%;
+        margin-top: 69px;
+        font-size: 35px;
+    } 
+    #headerBackground{
+        margin-top: 30px;
+        margin-bottom: 30px;
+        width: 640px;
+        margin-left: auto;
+        margin-right: auto
+    }
+    
+    #image{
+        width: 500px;
+    }
+    .footer{
+        font-size: 15px;
+        width: 817px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        clear: both;
+    }
+    #cover{
+        min-height: 200px;
+    }
+    
+}
+
