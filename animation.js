@@ -34,25 +34,23 @@ var counter = 0;
 var render = function() {
   ctx.fillStyle = '#000000';
   ctx.fillRect(0,0,width,height);
+  movePlayer();
+  moveGMen();
+  drawHippies(ctx);
+  drawGMen(ctx)
   drawPlayer(ctx);
+
 };
 
 /* Update stuff every loop */
 var update = function(delta) {
-    if (38 in keysDown) {
-
-       movePlayer("up");
-    }
-    if (40 in keysDown) {
-       movePlayer("down");
-    }
     if (37 in keysDown) {
-      movePlayer("left");
+      changeDir("left");
     }
     if (39 in keysDown) {
-      movePlayer("right");
+      changeDir("right");
     }
-  
+
 };
 
 /* Time-based motion animation */
