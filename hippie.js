@@ -8,11 +8,20 @@ function hippie(x,y,r,speed,dir,state) {
  var poo;
 }
 
-var eSize = 20;
-var eSpeed = 1;
+var hSize = 10;
+var hSpeed = 1;
+var hCount = 300;
 
-var hippies = [new hippie(100, 100, 10, eSpeed, 2, false)];
+var hippies = [new hippie(100, 100, hSize, hSpeed, 2, false)];
 
+
+function hippieTick(){
+  hCount += 1;
+  if(hCount > 700){
+    hCount = 0;
+    addHippie();
+  }
+}
 function drawHippies(context) {
   for(i = 0; i < hippies.length; i++){
     var e = hippies[i];
@@ -28,9 +37,11 @@ function drawHippies(context) {
 
 
 function moveHippies() {
+
+
   for(i = 0; i < hippies.length; i++){
     var e = hippies[i];
-    if(!e.state){
+    if(!e.state && poops.length > 0){
     var poop = poops[0]
     var dist = Math.sqrt(Math.pow((e.x - poops[0].x),2) + Math.pow((e.y - poops[0].y),2));
     for(k = 1; k < poops.length; k++){
@@ -84,9 +95,37 @@ function moveHippies() {
 
      e.x = e.x + x;
      e.y = e.y + y;
-  }
+   }
   }
 }
+
+function addHippie() {
+
+  var newX;
+  var newY;
+
+  switch(getRandomInteger(0,3)){
+    case 0:
+    newX = 0;
+    newY = getRandomInteger(0,height);
+    break;
+    case 1:
+    newY = 0;
+    newX = getRandomInteger(0,width);
+    break;
+    case 2:
+    newX = width;
+    newY = getRandomInteger(0, height)
+    break;
+    case 3:
+    newY = height;
+    newX = getRandomInteger(0,width);
+    break;
+  }
+
+  hippies.push(new hippie(newX, newY, hSize, hSpeed, 0, false))
+
+  }
 
 function killHippie(index){
   hippies.splice(index,1);

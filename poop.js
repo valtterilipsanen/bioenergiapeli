@@ -19,3 +19,7 @@ function drawPoops(ctx) {
   }
 
   }
+
+  function addPoop(x,y){
+    poops.push(new poop(x,y));
+  }

@@ -1,6 +1,6 @@
 
 
-
+var score = 0;
 $(document).ready(function() {
   var canvas = document.createElement('canvas');
   var ctx = canvas.getContext("2d");
@@ -34,6 +34,9 @@ var counter = 0;
 var render = function() {
   ctx.fillStyle = '#000000';
   ctx.fillRect(0,0,width,height);
+  cowTick();
+  gManTick();
+  hippieTick();
   movePlayer();
   moveHippies();
   moveGMen();
@@ -50,7 +53,6 @@ var render = function() {
 var update = function(delta) {
     if (37 in keysDown) {
       changeDir("left");
-      addGMan()
     }
     if (39 in keysDown) {
       changeDir("right");

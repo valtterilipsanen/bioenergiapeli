@@ -1,9 +1,10 @@
-function cow(x,y,r,speed,dir) {
+function cow(x,y,r,speed,dir, counter) {
  this.x = x;
  this.y = y;
  this.r = r;
  this.speed = speed;
  this.dir = dir;
+ this.counter = counter;
 }
 
 
@@ -14,7 +15,7 @@ var eSpeed = 2;
 
 
 
-var cows = [new cow(300,300,eSize,eSpeed,0), new cow(600,300,eSize,eSpeed,1), new cow(400,500,eSize,eSpeed,1) ];
+var cows = [new cow(300,300,eSize,eSpeed,0, 0), new cow(600,300,eSize,eSpeed,1), new cow(400,500,eSize,eSpeed,1, 500) ];
 
 function drawCows(context) {
   for(i = 0; i < cows.length; i++){
@@ -27,7 +28,15 @@ function drawCows(context) {
   }
 }
 
-
+function cowTick(){
+  for(i = 0; i < cows.length; i++){
+    cows[i].counter += 1;
+    if(cows[i].counter > 1000){
+      cows[i].counter = 0;
+      shit(cows[i]);
+    }
+  }
+}
 
 function moveCows() {
 
@@ -173,9 +182,14 @@ function addCow() {
 
 
     var dir = (parseFloat(getRandomInteger(0,360)) / 360) * 2* Math.PI;
+    var count = getRandomInteger(0,1000);
 
-    cows.push(new cow(newX, newY, eSize, eSpeed, dir));
+    cows.push(new cow(newX, newY, eSize, eSpeed, dir, count));
 
     }
+  }
 }
+
+function shit(cow) {
+  addPoop(cow.x,cow.y);
 }
