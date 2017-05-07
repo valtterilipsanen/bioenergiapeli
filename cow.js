@@ -101,10 +101,81 @@ function moveCows() {
 
              e.dir = angle
          }
+         for(y = 0; y < hippies.length; y++){
+           var h = hippies[y];
+           var d = Math.sqrt(Math.pow((e.x - h.x),2) + Math.pow((e.y - h.y),2));
+           if(d < h.r + e.r){
+             killHippie(y);
+           }
+         }
+
+         for(y = 0; y < gMen.length; y++){
+           var h = gMen[y];
+           var d = Math.sqrt(Math.pow((e.x - h.x),2) + Math.pow((e.y - h.y),2));
+           if(d < h.r + e.r){
+             killGMan(y);
+           }
+         }
 
      }
 }
 
 function killCow(index){
   cows.splice(index,1);
+}
+
+var cowCanAdd = true;
+function addCow() {
+
+
+    if(cowCanAdd){
+    var newX = 0;
+    var newY = 0;
+    var counter = 0;
+
+    var flag = false;
+    while(flag === false && counter < 1000){
+        newX = getRandomInteger(eSize, width - eSize);
+        newY = getRandomInteger(eSize, height - eSize);
+
+        flag = true;
+        for(k = 0; k < cows.length; k++){
+            var distance = Math.sqrt(Math.pow((newX - cows[k].x),2) + Math.pow((newY - cows[k].y),2));
+                if(distance < 2 * eSize){
+                    flag = false;
+                }
+        }
+
+        for(h = 0; h < hippies.length; h++){
+            var distance = Math.sqrt(Math.pow((newX - hippies[h].x),2) + Math.pow((newY - hippies[h].y),2));
+                if(distance < eSize + hippies[h].r){
+                    flag = false;
+                }
+        }
+
+        for(g = 0; g < gMen.length; g++){
+            var distance = Math.sqrt(Math.pow((newX - gMen[g].x),2) + Math.pow((newY - gMen[g].y),2));
+                if(distance < eSize + gMen[g].r){
+                    flag = false;
+                }
+        }
+        var distance = Math.sqrt(Math.pow((newX - p.x),2) + Math.pow((newY - p.y),2));
+        if(distance < eSize + p.r){
+            flag = false;
+        }
+
+        counter = counter + 1;
+
+        if(counter >= 1000) cowCanAdd = false;
+
+    }
+    if(counter < 1000){
+
+
+    var dir = (parseFloat(getRandomInteger(0,360)) / 360) * 2* Math.PI;
+
+    cows.push(new cow(newX, newY, eSize, eSpeed, dir));
+
+    }
+}
 }

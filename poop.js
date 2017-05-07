@@ -4,7 +4,7 @@ function poop(x,y){
   this.r = 10;
 }
 
-var poops = [new poop(400, 100)];
+var poops = [new poop(400, 100), new poop(300,150)];
 
 function drawPoops(ctx) {
   for(i = 0; i < poops.length; i++){

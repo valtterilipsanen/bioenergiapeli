@@ -83,6 +83,13 @@ if(dist < p.r + e.r){
   killGMan(i);
  }
 }
+for(i = 0; i < poops.length; i++){
+  var e = poops[i];
+  var dist = Math.sqrt(Math.pow((p.x - e.x),2) + Math.pow((p.y - e.y),2));
+  if(dist < p.r + e.r){
+    poops.splice(i,1);
+   }
+}
 
 
 /*  switch (dir) {

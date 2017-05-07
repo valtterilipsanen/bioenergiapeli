@@ -35,6 +35,7 @@ var render = function() {
   ctx.fillStyle = '#000000';
   ctx.fillRect(0,0,width,height);
   movePlayer();
+  moveHippies();
   moveGMen();
   moveCows();
   drawHippies(ctx);
@@ -49,6 +50,7 @@ var render = function() {
 var update = function(delta) {
     if (37 in keysDown) {
       changeDir("left");
+      addGMan()
     }
     if (39 in keysDown) {
       changeDir("right");
@@ -74,3 +76,10 @@ var then = Date.now();
 main();
 
 });
+
+function getRandomInteger( min, max ){
+    var difference = max - min;
+
+    var number = parseInt(Math.round(Math.random() * difference + min));
+    return number;
+}
