@@ -1,3 +1,20 @@
+var c0Img = new Image();
+var c1Img = new Image();
+var c2Img = new Image();
+var c3Img = new Image();
+
+
+$(document).ready(function() {
+
+c0Img.src = "assets/sprites/cow0.png"
+c1Img.src = "assets/sprites/cow1.png"
+c2Img.src = "assets/sprites/cow2.png"
+c3Img.src = "assets/sprites/cow3.png"
+
+
+});
+
+
 function cow(x,y,r,speed,dir, counter) {
  this.x = x;
  this.y = y;
@@ -5,6 +22,7 @@ function cow(x,y,r,speed,dir, counter) {
  this.speed = speed;
  this.dir = dir;
  this.counter = counter;
+ this.img = 0;
 }
 
 
@@ -15,28 +33,61 @@ var eSpeed = 2;
 
 
 
-var cows = [new cow(300,300,eSize,eSpeed,0, 0), new cow(600,300,eSize,eSpeed,1), new cow(400,500,eSize,eSpeed,1, 500) ];
+var cows = [new cow(300,300,eSize,eSpeed,0, 0, 1), new cow(600,300,eSize,eSpeed,1, 120, 2), new cow(400,500,eSize,eSpeed,1, 500, 0) ];
 
 function drawCows(context) {
   for(i = 0; i < cows.length; i++){
   var e = cows[i];
-  context.beginPath();
-  context.fillStyle = '#FF00FF';
-  context.arc(e.x,e.y,e.r,0,2*Math.PI);
-  context.fill();
-  context.closePath();
+
+  context.save();
+  context.translate(e.x,e.y);
+  context.rotate(e.dir + Math.PI / 2);
+  switch(e.img){
+    case 0:
+    context.drawImage(c0Img, -e.r, -e.r, 2*e.r, 2*e.r);
+    break;
+    case 1:
+    context.drawImage(c1Img, -e.r, -e.r, 2*e.r, 2*e.r);
+    break;
+    case 2:
+    context.drawImage(c2Img, -e.r, -e.r, 2*e.r, 2*e.r);
+    break;
+    case 3:
+    context.drawImage(c3Img, -e.r, -e.r, 2*e.r, 2*e.r);
+    break;
+  }
+  context.restore();
   }
 }
 
 function cowTick(){
   for(i = 0; i < cows.length; i++){
-    cows[i].counter += 1;
-    if(cows[i].counter > 1000){
-      cows[i].counter = 0;
-      shit(cows[i]);
+    var e = cows[i];
+    e.counter += 1;
+    if(e.counter > 1000){
+      e.counter = 0;
+      shit(e);
+    }
+    if(e.counter % 10 == 0){
+      switch(e.img){
+        case 0:
+        e.img = 1;
+        break;
+        case 1:
+        e.img = 2;
+        break;
+        case 2:
+        e.img = 3;
+        break;
+        case 3:
+        e.img = 0;
+        break;
+      }
+    }
+
     }
   }
-}
+
 
 function moveCows() {
 
