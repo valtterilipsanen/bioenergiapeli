@@ -1,15 +1,11 @@
 var c0Img = new Image();
-var c1Img = new Image();
-var c2Img = new Image();
-var c3Img = new Image();
+
 
 
 $(document).ready(function() {
 
-c0Img.src = "assets/sprites/cow0.png"
-c1Img.src = "assets/sprites/cow1.png"
-c2Img.src = "assets/sprites/cow2.png"
-c3Img.src = "assets/sprites/cow3.png"
+c0Img.src = "assets/sprites/cow.png"
+
 
 
 });
@@ -28,12 +24,12 @@ function cow(x,y,r,speed,dir, counter) {
 
 var width = 900;
 var height = 700;
-var eSize = 20;
+var eSize = 40;
 var eSpeed = 2;
 
 
 
-var cows = [new cow(300,300,eSize,eSpeed,0, 0, 1), new cow(600,300,eSize,eSpeed,1, 120, 2), new cow(400,500,eSize,eSpeed,1, 500, 0) ];
+var cows = [new cow(300,300,eSize,eSpeed,0, 0), new cow(600,300,eSize,eSpeed,1, 120), new cow(400,500,eSize,eSpeed,1, 500) ];
 
 function drawCows(context) {
   for(i = 0; i < cows.length; i++){
@@ -47,13 +43,13 @@ function drawCows(context) {
     context.drawImage(c0Img, -e.r, -e.r, 2*e.r, 2*e.r);
     break;
     case 1:
-    context.drawImage(c1Img, -e.r, -e.r, 2*e.r, 2*e.r);
+    context.drawImage(c0Img, -e.r, -e.r, 2*e.r, 2*e.r);
     break;
     case 2:
-    context.drawImage(c2Img, -e.r, -e.r, 2*e.r, 2*e.r);
+    context.drawImage(c0Img, -e.r, -e.r, 2*e.r, 2*e.r);
     break;
     case 3:
-    context.drawImage(c3Img, -e.r, -e.r, 2*e.r, 2*e.r);
+    context.drawImage(c0Img, -e.r, -e.r, 2*e.r, 2*e.r);
     break;
   }
   context.restore();

@@ -35,7 +35,7 @@ $(document).ready(function() {
 
 var counter = 0;
 var render = function() {
-  ctx.fillStyle = '#000000';
+  ctx.fillStyle = '#00FF00';
   ctx.fillRect(0,0,width,height);
   cowTick();
   gManTick();
@@ -45,8 +45,8 @@ var render = function() {
   moveHippies();
   moveGMen();
   moveCows();
-  drawHippies(ctx);
   drawPoops(ctx);
+  drawHippies(ctx);
   drawCows(ctx);
   drawGMen(ctx)
   drawPlayer(ctx);
