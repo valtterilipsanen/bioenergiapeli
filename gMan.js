@@ -25,7 +25,7 @@ function gMan(x,y,r,speed,dir) {
  this.ticks = 0;
 }
 
-var eSize = 30;
+var eSize = 20;
 var eSpeed = 2;
 var gCount = 0;
 

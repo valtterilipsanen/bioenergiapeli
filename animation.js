@@ -33,10 +33,13 @@ $(document).ready(function() {
 
 
 
-var counter = 0;
+
 var render = function() {
   ctx.fillStyle = '#00FF00';
   ctx.fillRect(0,0,width,height);
+  ctx.fillStyle = '#000000';
+  ctx.font = "30px Georgia"
+  ctx.fillText("Score: " + score, 5, 30);
   cowTick();
   gManTick();
   hippieTick();

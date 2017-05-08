@@ -276,5 +276,8 @@ function addHippie() {
 
 function killHippie(index){
   addSplat(hippies[index].x, hippies[index].y);
+  if(hippies[index].state){
+    addPoop(hippies[index].x, hippies[index].y)
+  }
   hippies.splice(index,1);
 }
