@@ -100,7 +100,7 @@ function hippieTick(){
     }
   }
   hCount += 1;
-  if(hCount > 700){
+  if(hCount > 550){
     hCount = 0;
     addHippie();
   }
@@ -275,5 +275,6 @@ function addHippie() {
   }
 
 function killHippie(index){
+  addSplat(hippies[index].x, hippies[index].y);
   hippies.splice(index,1);
 }

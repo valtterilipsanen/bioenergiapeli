@@ -33,7 +33,7 @@ var gMen = [new gMan(500, 500, eSize, eSpeed, 2)];
 
 function gManTick(){
   gCount += 1;
-  if(gCount > 850){
+  if(gCount > 600){
     gCount = 0;
     addGMan();
   }
@@ -154,5 +154,6 @@ function addGMan() {
 
 
 function killGMan(index){
+  addSplat(gMen[index].x, gMen[index].y);
   gMen.splice(index,1);
 }

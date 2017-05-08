@@ -41,10 +41,12 @@ var render = function() {
   gManTick();
   hippieTick();
   playerTick();
+  splatTick();
   movePlayer();
   moveHippies();
   moveGMen();
   moveCows();
+  drawSplatter(ctx);
   drawPoops(ctx);
   drawHippies(ctx);
   drawCows(ctx);

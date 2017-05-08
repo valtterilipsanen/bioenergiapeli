@@ -46,10 +46,10 @@ function playerTick(){
 function changeDir(dir) {
   switch(dir) {
     case "left":
-    p.dir = p.dir - 0.08;
+    p.dir = p.dir - 0.05;
     break;
     case "right":
-    p.dir = p.dir + 0.08;
+    p.dir = p.dir + 0.05;
     break;
   }
 }

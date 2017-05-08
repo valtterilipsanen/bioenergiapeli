@@ -24,12 +24,12 @@ function cow(x,y,r,speed,dir, counter) {
 
 var width = 900;
 var height = 700;
-var eSize = 40;
-var eSpeed = 2;
+var cSize = 40;
+var cSpeed = 2;
+var timer = 0;
 
 
-
-var cows = [new cow(300,300,eSize,eSpeed,0, 0), new cow(600,300,eSize,eSpeed,1, 120), new cow(400,500,eSize,eSpeed,1, 500) ];
+var cows = [new cow(300,300,cSize,cSpeed,0, 0), new cow(600,300,cSize,cSpeed,1, 120), new cow(400,500,cSize,cSpeed,1, 500) ];
 
 function drawCows(context) {
   for(i = 0; i < cows.length; i++){
@@ -57,6 +57,11 @@ function drawCows(context) {
 }
 
 function cowTick(){
+  timer += 1;
+  if(timer > 3000){
+    addCow();
+    timer = 0;
+  }
   for(i = 0; i < cows.length; i++){
     var e = cows[i];
     e.counter += 1;
@@ -177,6 +182,7 @@ function moveCows() {
 }
 
 function killCow(index){
+  addSplat(cows[index].x, cows[index].y);
   cows.splice(index,1);
 }
 
@@ -191,32 +197,32 @@ function addCow() {
 
     var flag = false;
     while(flag === false && counter < 1000){
-        newX = getRandomInteger(eSize, width - eSize);
-        newY = getRandomInteger(eSize, height - eSize);
+        newX = getRandomInteger(cSize, width - cSize);
+        newY = getRandomInteger(cSize, height - cSize);
 
         flag = true;
         for(k = 0; k < cows.length; k++){
             var distance = Math.sqrt(Math.pow((newX - cows[k].x),2) + Math.pow((newY - cows[k].y),2));
-                if(distance < 2 * eSize){
+                if(distance < 2 * cSize){
                     flag = false;
                 }
         }
 
         for(h = 0; h < hippies.length; h++){
             var distance = Math.sqrt(Math.pow((newX - hippies[h].x),2) + Math.pow((newY - hippies[h].y),2));
-                if(distance < eSize + hippies[h].r){
+                if(distance < cSize + hippies[h].r){
                     flag = false;
                 }
         }
 
         for(g = 0; g < gMen.length; g++){
             var distance = Math.sqrt(Math.pow((newX - gMen[g].x),2) + Math.pow((newY - gMen[g].y),2));
-                if(distance < eSize + gMen[g].r){
+                if(distance < cSize + gMen[g].r){
                     flag = false;
                 }
         }
         var distance = Math.sqrt(Math.pow((newX - p.x),2) + Math.pow((newY - p.y),2));
-        if(distance < eSize + p.r){
+        if(distance < cSize + p.r){
             flag = false;
         }
 
@@ -231,7 +237,7 @@ function addCow() {
     var dir = (parseFloat(getRandomInteger(0,360)) / 360) * 2* Math.PI;
     var count = getRandomInteger(0,1000);
 
-    cows.push(new cow(newX, newY, eSize, eSpeed, dir, count));
+    cows.push(new cow(newX, newY, cSize, cSpeed, dir, count));
 
     }
   }
