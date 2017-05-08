@@ -20,6 +20,9 @@ $(document).ready(function() {
 
   window.addEventListener("keyup", function(e) {
     delete keysDown[e.keyCode];
+    if(!(37 in keysDown && 39 in keysDown) || !((37 in keysDown || 39 in keysDown))){
+      p.img = "s";
+    }
   });
 
   window.addEventListener("keydown",function(e){
@@ -37,6 +40,7 @@ var render = function() {
   cowTick();
   gManTick();
   hippieTick();
+  playerTick();
   movePlayer();
   moveHippies();
   moveGMen();
@@ -52,9 +56,11 @@ var render = function() {
 /* Update stuff every loop */
 var update = function(delta) {
     if (37 in keysDown) {
+      p.img = "l";
       changeDir("left");
     }
     if (39 in keysDown) {
+      p.img = "r";
       changeDir("right");
     }
 

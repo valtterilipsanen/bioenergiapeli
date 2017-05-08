@@ -1,21 +1,104 @@
-function hippie(x,y,r,speed,dir,state) {
+var h0Img = new Image();
+var h1Img = new Image();
+var h2Img = new Image();
+var h3Img = new Image();
+var h4Img = new Image();
+var h5Img = new Image();
+var h6Img = new Image();
+var h7Img = new Image();
+var h8Img = new Image();
+var ph0Img = new Image();
+var ph1Img = new Image();
+var ph2Img = new Image();
+var ph3Img = new Image();
+var ph4Img = new Image();
+var ph5Img = new Image();
+var ph6Img = new Image();
+var ph7Img = new Image();
+var ph8Img = new Image();
+
+$(document).ready(function() {
+
+h0Img.src = "assets/sprites/hippi0.png";
+h1Img.src = "assets/sprites/hippi2.png";
+h2Img.src = "assets/sprites/hippi4.png";
+h3Img.src = "assets/sprites/hippi6.png";
+h4Img.src = "assets/sprites/hippi8.png";
+h5Img.src = "assets/sprites/hippi10.png";
+h6Img.src = "assets/sprites/hippi12.png";
+h7Img.src = "assets/sprites/hippi14.png";
+h8Img.src = "assets/sprites/hippi16.png";
+
+ph0Img.src = "assets/sprites/phippi0.png";
+ph1Img.src = "assets/sprites/phippi2.png";
+ph2Img.src = "assets/sprites/phippi4.png";
+ph3Img.src = "assets/sprites/phippi6.png";
+ph4Img.src = "assets/sprites/phippi8.png";
+ph5Img.src = "assets/sprites/phippi10.png";
+ph6Img.src = "assets/sprites/phippi12.png";
+ph7Img.src = "assets/sprites/phippi14.png";
+ph8Img.src = "assets/sprites/phippi16.png";
+
+});
+
+function hippie(x,y,r,speed,dir,state,img) {
  this.x = x;
  this.y = y;
  this.r = r;
  this.speed = speed;
  this.dir = dir;
  this.state = state;
- var poo;
+ this.img = img;
+ this.poo;
+ this.ticks = 0;
 }
 
-var hSize = 10;
+var hSize = 20;
 var hSpeed = 1;
 var hCount = 300;
 
-var hippies = [new hippie(100, 100, hSize, hSpeed, 2, false)];
+
+
+var hippies = [new hippie(100, 100, hSize, hSpeed, 2, false, 1)];
 
 
 function hippieTick(){
+  for(i = 0; i < hippies.length; i++){
+
+
+    var e = hippies[i];
+    e.ticks += 1;
+    switch(e.ticks / 10){
+      case 0:
+      e.img = 0;
+      break;
+      case 1:
+      e.img = 1;
+      break;
+      case 2:
+      e.img = 2;
+      break;
+      case 3:
+      e.img = 3;
+      break;
+      case 4:
+      e.img = 4;
+      break;
+      case 5:
+      e.img = 5;
+      break;
+      case 6:
+      e.img = 6;
+      break;
+      case 7:
+      e.img = 7;
+      break;
+      case 8:
+      e.img = 8;
+      e.ticks = 0;
+      break;
+    }
+  }
   hCount += 1;
   if(hCount > 700){
     hCount = 0;
@@ -27,11 +110,75 @@ function drawHippies(context) {
     var e = hippies[i];
     var x = e.x;
     var y = e.y;
-    context.beginPath();
-    context.fillStyle = '#00FF00';
-    context.arc(x, y, e.r, 0, 2*Math.PI);
-    context.fill();
-    context.closePath();
+
+
+    context.save();
+    context.translate(x,y);
+    context.rotate(e.dir);
+    if(e.state){
+      switch (e.img) {
+        case 0:
+        context.drawImage(ph0Img, -e.r, -e.r, 2*e.r, 2*e.r);
+        break;
+        case 1:
+        context.drawImage(ph1Img, -e.r, -e.r, 2*e.r, 2*e.r);
+        break;
+        case 2:
+        context.drawImage(ph2Img, -e.r, -e.r, 2*e.r, 2*e.r);
+        break;
+        case 3:
+        context.drawImage(ph3Img, -e.r, -e.r, 2*e.r, 2*e.r);
+        break;
+        case 4:
+        context.drawImage(ph4Img, -e.r, -e.r, 2*e.r, 2*e.r);
+        break;
+        case 5:
+        context.drawImage(ph5Img, -e.r, -e.r, 2*e.r, 2*e.r);
+        break;
+        case 6:
+        context.drawImage(ph6Img, -e.r, -e.r, 2*e.r, 2*e.r);
+        break;
+        case 7:
+        context.drawImage(ph7Img, -e.r, -e.r, 2*e.r, 2*e.r);
+        break;
+        case 8:
+        context.drawImage(ph8Img, -e.r, -e.r, 2*e.r, 2*e.r);
+        break;
+      }
+    }else{
+    switch (e.img) {
+      case 0:
+      context.drawImage(h0Img, -e.r, -e.r, 2*e.r, 2*e.r);
+      break;
+      case 1:
+      context.drawImage(h1Img, -e.r, -e.r, 2*e.r, 2*e.r);
+      break;
+      case 2:
+      context.drawImage(h2Img, -e.r, -e.r, 2*e.r, 2*e.r);
+      break;
+      case 3:
+      context.drawImage(h3Img, -e.r, -e.r, 2*e.r, 2*e.r);
+      break;
+      case 4:
+      context.drawImage(h4Img, -e.r, -e.r, 2*e.r, 2*e.r);
+      break;
+      case 5:
+      context.drawImage(h5Img, -e.r, -e.r, 2*e.r, 2*e.r);
+      break;
+      case 6:
+      context.drawImage(h6Img, -e.r, -e.r, 2*e.r, 2*e.r);
+      break;
+      case 7:
+      context.drawImage(h7Img, -e.r, -e.r, 2*e.r, 2*e.r);
+      break;
+      case 8:
+      context.drawImage(h8Img, -e.r, -e.r, 2*e.r, 2*e.r);
+      break;
+    }
+  }
+
+    context.restore();
+
   }
 }
 
@@ -123,7 +270,7 @@ function addHippie() {
     break;
   }
 
-  hippies.push(new hippie(newX, newY, hSize, hSpeed, 0, false))
+  hippies.push(new hippie(newX, newY, hSize, hSpeed, 0, false, h1Img))
 
   }
 

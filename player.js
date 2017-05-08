@@ -1,3 +1,20 @@
+var tImg = new Image();
+var t2Img = new Image();
+var tOImg = new Image();
+var tO2Img = new Image();
+var tVImg = new Image();
+var tV2Img = new Image();
+
+$(document).ready(function() {
+
+tImg.src = "assets/sprites/traktorit/traktori.png"
+t2Img.src = "assets/sprites/traktorit/traktori2.png"
+tOImg.src = "assets/sprites/traktorit/traktoriO.png"
+tO2Img.src = "assets/sprites/traktorit/traktoriO2.png"
+tVImg.src = "assets/sprites/traktorit/traktoriV.png"
+tV2Img.src = "assets/sprites/traktorit/traktoriV2.png"
+
+});
 
 function player(x,y,r,speed,dir) {
  this.x = x;
@@ -5,9 +22,11 @@ function player(x,y,r,speed,dir) {
  this.r = r;
  this.speed = speed;
  this.dir = dir;
+ this.ticks = 0;
+ this.img = "s"
+};
 
 
-}
 var pSpeed = 4;
 var windowWidth = 900;
 var windowHeight = 700;
@@ -16,27 +35,60 @@ var width = 900;
 var height = 700;
 
 
-var p = new player(width / 2, height / 2, 20, pSpeed, 0);
+var p = new player(width / 2, height / 2, 60, pSpeed, 0);
 
+function playerTick(){
+  p.ticks += 1
+  if(p.ticks > 10){
+    p.ticks = 0;
+  }
+}
 function changeDir(dir) {
   switch(dir) {
     case "left":
-    p.dir = p.dir - 0.07
+    p.dir = p.dir - 0.08;
     break;
     case "right":
-    p.dir = p.dir + 0.07
+    p.dir = p.dir + 0.08;
     break;
   }
 }
 
+
+
+
 function drawPlayer(context) {
   var x = p.x;
   var y = p.y;
-  context.beginPath();
-  context.fillStyle = '#FF0000';
-  context.arc(x, y, p.r, 0, 2*Math.PI);
-  context.fill();
-  context.closePath();
+
+  context.save();
+  context.translate(x, y);
+  context.rotate(p.dir + Math.PI / 2);
+  if(p.img == "s"){
+    if(p.ticks >= 5){
+    context.drawImage(tImg, -p.r, -p.r, 2 * p.r, 2 * p.r );
+  } else {
+      context.drawImage(t2Img, -p.r, -p.r, 2 * p.r, 2 * p.r );
+  }
+}else if(p.img == "l"){
+    if(p.ticks >= 5){
+    context.drawImage(tVImg, -p.r, -p.r, 2 * p.r, 2 * p.r );
+  } else {
+      context.drawImage(tV2Img, -p.r, -p.r, 2 * p.r, 2 * p.r );
+  }
+}else if(p.img == "r"){
+    console.log(p.img)
+    if(p.ticks >= 5){
+    context.drawImage(tOImg, -p.r, -p.r, 2 * p.r, 2 * p.r );
+  } else {
+      context.drawImage(tO2Img, -p.r, -p.r, 2 * p.r, 2 * p.r );
+  }
+  }else{
+    context.drawImage(tImg, -p.r, -p.r, 2 * p.r, 2 * p.r );
+  }
+
+  context.restore();
+
 }
 
 

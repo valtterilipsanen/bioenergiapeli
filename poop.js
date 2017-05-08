@@ -4,6 +4,13 @@ function poop(x,y){
   this.r = 10;
 }
 
+var pooImgReady = false;
+var pooImg = new Image();
+pooImg.onload = function () {
+    pooImgReady = true;
+};
+pooImg.src = "assets/sprites/poop.png";
+
 var poops = [new poop(400, 100), new poop(300,150)];
 
 function drawPoops(ctx) {
@@ -11,11 +18,10 @@ function drawPoops(ctx) {
     var e = poops[i];
     var x = e.x;
     var y = e.y;
-    ctx.beginPath();
-    ctx.fillStyle = '#0000FF';
-    ctx.arc(x, y, e.r, 0, 2*Math.PI);
-    ctx.fill();
-    ctx.closePath();
+    ctx.save();
+    ctx.translate(x,y);
+    ctx.drawImage(pooImg, -e.r, -e.r, 2*e.r, 2*e.r);
+    ctx.restore();
   }
 
   }
