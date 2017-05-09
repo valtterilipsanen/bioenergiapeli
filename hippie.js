@@ -17,6 +17,9 @@ var ph6Img = new Image();
 var ph7Img = new Image();
 var ph8Img = new Image();
 
+var killSound;
+var ohYeah1;
+var ohYeah2;
 $(document).ready(function() {
 
 h0Img.src = "assets/sprites/hippi0.png";
@@ -39,6 +42,9 @@ ph6Img.src = "assets/sprites/phippi12.png";
 ph7Img.src = "assets/sprites/phippi14.png";
 ph8Img.src = "assets/sprites/phippi16.png";
 
+killSound = new Audio('assets/sounds/death.wav')
+ohYeah1 = new Audio('assets/sounds/ohYeah1.wav')
+ohYeah2 = new Audio('assets/sounds/ohYeah2.wav')
 });
 
 function hippie(x,y,r,speed,dir,state,img) {
@@ -219,6 +225,19 @@ function moveHippies() {
     e.y = e.y + y;
 
     if(dist < e.r ){
+      switch (getRandomInteger(0,1)) {
+        case 0:
+          ohYeah1.pause();
+          ohYeah1.currentTime = 0;
+          ohYeah1.play();
+          break;
+
+        case 1:
+          ohYeah2.pause();
+          ohYeah2.currentTime = 0;
+          ohYeah2.play();
+          break;
+      }
       e.state = true;
       e.poo = poop;
       poops.splice(poops.indexOf(poop),1);
@@ -289,6 +308,9 @@ function addHippie() {
   }
 
 function killHippie(index){
+  killSound.pause();
+  killSound.currentTime = 0;
+  killSound.play();
   addSplat(hippies[index].x, hippies[index].y);
   if(hippies[index].state){
     addPoop(hippies[index].x, hippies[index].y)

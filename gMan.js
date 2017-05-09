@@ -4,6 +4,8 @@ var b2Img = new Image();
 var b3Img = new Image();
 var b4Img = new Image();
 
+var bSound;
+
 $(document).ready(function() {
 
 b0Img.src = "assets/sprites/vero0.png"
@@ -11,6 +13,8 @@ b1Img.src = "assets/sprites/vero1.png"
 b2Img.src = "assets/sprites/vero2.png"
 b3Img.src = "assets/sprites/vero3.png"
 b4Img.src = "assets/sprites/vero4.png"
+
+bSound = new Audio('assets/sounds/bear1.wav')
 });
 
 
@@ -35,19 +39,19 @@ var gMen = [];
 function gManTick(){
   switch(cows.length){
     case 5:
-    limit = 700;
+    limit = 800;
     break;
     case 4:
-    limit = 600;
+    limit = 700;
     break;
     case 3:
-    limit = 500;
-    break;
-    case 2:
     limit = 400;
     break;
-    case 1:
+    case 2:
     limit = 300;
+    break;
+    case 1:
+    limit = 200;
     break;
   }
   gCount += 1;
@@ -158,10 +162,23 @@ function moveGMen() {
 
     for(g = 0; g < cows.length; g++){
         var distance = Math.sqrt(Math.pow((e.x - cows[g].x),2) + Math.pow((e.y - cows[g].y),2));
-            if(distance < e.r + cows[g].r){
+            if(distance < e.r + cows[g].r - 20){
+              bSound.pause()
+              bSound.currentTime = 0;
+              bSound.play();
                 killCow(g);
                 e.state = false;
                 e.ticks = 0;
+            }
+    }
+
+    for(g = 0; g < hippies.length; g++){
+        var distance = Math.sqrt(Math.pow((e.x - hippies[g].x),2) + Math.pow((e.y - hippies[g].y),2));
+            if(distance < e.r + hippies[g].r - 10){
+              bSound.pause()
+              bSound.currentTime = 0;
+              bSound.play();
+              killHippie(g);
             }
     }
 
@@ -195,19 +212,19 @@ function addGMan() {
 
   switch(getRandomInteger(0,3)){
     case 0:
-    newX = 0;
+    newX = -100;
     newY = getRandomInteger(0,height);
     break;
     case 1:
-    newY = 0;
+    newY = -100;
     newX = getRandomInteger(0,width);
     break;
     case 2:
-    newX = width;
+    newX = width + 100;
     newY = getRandomInteger(0, height)
     break;
     case 3:
-    newY = height;
+    newY = height + 100;
     newX = getRandomInteger(0,width);
     break;
   }

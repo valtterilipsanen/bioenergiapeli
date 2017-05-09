@@ -4,6 +4,7 @@ var s2Img = new Image();
 var s3Img = new Image();
 var s4Img = new Image();
 var s5Img = new Image();
+var splatSound;
 $(document).ready(function() {
 
 s0Img.src = "assets/sprites/blood0.png"
@@ -12,6 +13,8 @@ s2Img.src = "assets/sprites/blood2.png"
 s3Img.src = "assets/sprites/blood3.png"
 s4Img.src = "assets/sprites/blood4.png"
 s5Img.src = "assets/sprites/blood5.png"
+
+splatSound = new Audio('assets/sounds/splat.wav');
 });
 
 
@@ -25,6 +28,9 @@ function splatter(x,y){
 var splats = [];
 
 function addSplat(x,y){
+  splatSound.pause();
+  splatSound.currentTime = 0;
+  splatSound.play();
   splats.push(new splatter(x,y));
 }
 

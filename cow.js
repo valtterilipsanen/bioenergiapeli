@@ -3,12 +3,21 @@ var c1Img = new Image();
 var c2Img = new Image();
 var c3Img = new Image();
 
+var c0Sound;
+var c1Sound;
+var c2Sound;
+
 $(document).ready(function() {
 
 c0Img.src = "assets/sprites/cows/cow0.png"
 c1Img.src = "assets/sprites/cows/cow1.png"
 c2Img.src = "assets/sprites/cows/cow2.png"
 c3Img.src = "assets/sprites/cows/cow3.png"
+
+c0Sound = new Audio('assets/sounds/cow-moo1.wav');
+c1Sound = new Audio('assets/sounds/cow-moo2.wav');
+c2Sound = new Audio('assets/sounds/cow-moo3.wav');
+
 });
 
 
@@ -161,7 +170,7 @@ function moveCows() {
          for(y = 0; y < hippies.length; y++){
            var h = hippies[y];
            var d = Math.sqrt(Math.pow((e.x - h.x),2) + Math.pow((e.y - h.y),2));
-           if(d < h.r + e.r){
+           if(d < h.r + e.r - 20){
              killHippie(y);
            }
          }
@@ -232,5 +241,25 @@ function addCow() {
 }
 
 function shit(cow) {
+  switch(getRandomInteger(0,2)){
+    case 0:
+    c0Sound.pause();
+    c0Sound.currentTime = 0;
+    c0Sound.play();
+    break;
+
+    case 1:
+    c1Sound.pause();
+    c1Sound.currentTime = 0;
+    c1Sound.play();
+    break;
+
+    case 2:
+    c2Sound.pause();
+    c2Sound.currentTime = 0;
+    c2Sound.play();
+    break;
+
+  }
   addPoop(cow.x,cow.y);
 }

@@ -5,6 +5,9 @@ var tO2Img = new Image();
 var tVImg = new Image();
 var tV2Img = new Image();
 
+var pickSound;
+
+
 $(document).ready(function() {
 
 tImg.src = "assets/sprites/traktorit/traktori.png"
@@ -14,6 +17,7 @@ tO2Img.src = "assets/sprites/traktorit/traktoriO2.png"
 tVImg.src = "assets/sprites/traktorit/traktoriV.png"
 tV2Img.src = "assets/sprites/traktorit/traktoriV2.png"
 
+pickSound = new Audio('assets/sounds/pickup.wav')
 });
 
 function player(x,y,r,speed,dir) {
@@ -140,37 +144,12 @@ for(i = 0; i < poops.length; i++){
   var e = poops[i];
   var dist = Math.sqrt(Math.pow((p.x - e.x),2) + Math.pow((p.y - e.y),2));
   if(dist < p.r + e.r){
+    pickSound.pause();
+    pickSound.currentTime = 0;
+    pickSound.play();
     poops.splice(i,1);
     score += 1;
    }
 }
 
-
-/*  switch (dir) {
-    case "left":
-      p.x -= p.speed;
-      if (p.x < 20) {
-        p.x = 20;
-      }
-      break;
-    case "right":
-      p.x += p.speed;
-      if (p.x > width - 20) {
-        p.x = width - 20;
-      }
-      break;
-    case "up":
-      p.y -= p.speed;
-      if (p.y < 20) {
-        p.y = 20;
-      }
-      break;
-    case "down":
-      p.y += p.speed;
-      if (p.y > height - 20) {
-        p.y = height - 20;
-      }
-      break;
-  }
-  */
 }
