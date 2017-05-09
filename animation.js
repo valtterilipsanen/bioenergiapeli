@@ -16,7 +16,7 @@ addCow();
 }
 
 $(document).ready(function() {
-  var canvas = document.createElement('canvas');
+  var canvas = document.getElementById('canvas');
   var ctx = canvas.getContext("2d");
   canvas.width = windowWidth;
   canvas.height = windowHeight;
