@@ -22,10 +22,10 @@ function cow(x,y,r,speed,dir, counter) {
 }
 
 
-var width = 900;
+var width = 1000;
 var height = 700;
 var cSize = 40;
-var cSpeed = 2;
+var cSpeed = 1;
 var timer = 0;
 
 
@@ -167,14 +167,6 @@ function moveCows() {
            var d = Math.sqrt(Math.pow((e.x - h.x),2) + Math.pow((e.y - h.y),2));
            if(d < h.r + e.r){
              killHippie(y);
-           }
-         }
-
-         for(y = 0; y < gMen.length; y++){
-           var h = gMen[y];
-           var d = Math.sqrt(Math.pow((e.x - h.x),2) + Math.pow((e.y - h.y),2));
-           if(d < h.r + e.r){
-             killGMan(y);
            }
          }
 

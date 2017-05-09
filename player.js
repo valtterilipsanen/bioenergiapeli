@@ -27,15 +27,15 @@ function player(x,y,r,speed,dir) {
 };
 
 
-var pSpeed = 4;
-var windowWidth = 900;
+var pSpeed = 3;
+var windowWidth = 1000;
 var windowHeight = 700;
 
-var width = 900;
+var width = 1000;
 var height = 700;
 
 
-var p = new player(width / 2, height / 2, 60, pSpeed, 0);
+var p = new player(width / 2, height / 2, 40, pSpeed, 0);
 
 function playerTick(){
   p.ticks += 1
@@ -46,10 +46,10 @@ function playerTick(){
 function changeDir(dir) {
   switch(dir) {
     case "left":
-    p.dir = p.dir - 0.05;
+    p.dir = p.dir - 0.09;
     break;
     case "right":
-    p.dir = p.dir + 0.05;
+    p.dir = p.dir + 0.09;
     break;
   }
 }
@@ -77,7 +77,6 @@ function drawPlayer(context) {
       context.drawImage(tV2Img, -p.r, -p.r, 2 * p.r, 2 * p.r );
   }
 }else if(p.img == "r"){
-    console.log(p.img)
     if(p.ticks >= 5){
     context.drawImage(tOImg, -p.r, -p.r, 2 * p.r, 2 * p.r );
   } else {
@@ -90,9 +89,6 @@ function drawPlayer(context) {
   context.restore();
 
 }
-
-
-
 
 
 function movePlayer() {

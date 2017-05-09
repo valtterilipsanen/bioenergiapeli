@@ -26,7 +26,7 @@ function gMan(x,y,r,speed,dir) {
 }
 
 var eSize = 20;
-var eSpeed = 2;
+var eSpeed = 1;
 var gCount = 0;
 
 var gMen = [new gMan(500, 500, eSize, eSpeed, 2)];
@@ -102,14 +102,25 @@ function moveGMen() {
     var e = gMen[i];
     var angle;
 
-    if(e.x >= p.x && e.y <= p.y){
-       angle = Math.atan((e.y - p.y)/(e.x - p.x)) + Math.PI;
-     } else if(e.x <= p.x && e.y <= p.y){
-       angle = Math.atan((e.y - p.y)/(e.x - p.x));
-     } else if(e.x >= p.x && e.y >= p.y){
-       angle = Math.atan((e.y - p.y)/(e.x - p.x)) + Math.PI;
-     } else if(e.x <= p.x && e.y >= p.y){
-       angle = Math.atan((e.y - p.y)/(e.x - p.x));
+    if(cows.length > 0){
+    var cow = cows[0]
+    var dist = Math.sqrt(Math.pow((e.x - cow.x),2) + Math.pow((e.y - cow.y),2));
+    for(k = 1; k < cows.length; k++){
+      var d =  Math.sqrt(Math.pow((e.x - cows[k].x),2) + Math.pow((e.y - cows[k].y),2));
+      if(d < dist){
+        dist = d;
+        cow = cows[k]
+      }
+    }
+
+    if(e.x >= cow.x && e.y <= cow.y){
+       angle = Math.atan((e.y - cow.y)/(e.x - cow.x)) + Math.PI;
+     } else if(e.x <= cow.x && e.y <= cow.y){
+       angle = Math.atan((e.y - cow.y)/(e.x - cow.x));
+     } else if(e.x >= cow.x && e.y >= cow.y){
+       angle = Math.atan((e.y - cow.y)/(e.x - cow.x)) + Math.PI;
+     } else if(e.x <= cow.x && e.y >= cow.y){
+       angle = Math.atan((e.y - cow.y)/(e.x - cow.x));
      }
 
     e.dir = angle;
@@ -119,7 +130,34 @@ function moveGMen() {
 
     e.x = e.x + x;
     e.y = e.y + y;
+
+    for(g = 0; g < cows.length; g++){
+        var distance = Math.sqrt(Math.pow((e.x - cows[g].x),2) + Math.pow((e.y - cows[g].y),2));
+            if(distance < e.r + cows[g].r){
+                killCow(g);
+            }
     }
+
+    } else {
+      var angle;
+      if(e.x >= p.x && e.y <= p.y){
+         angle = Math.atan((e.y - p.y)/(e.x - p.x));
+       } else if(e.x <= p.x && e.y <= p.y){
+         angle = Math.atan((e.y - p.y)/(e.x - p.x)) + Math.PI;
+       } else if(e.x >= p.x && e.y >= p.y){
+         angle = Math.atan((e.y - p.y)/(e.x - p.x));
+       } else if(e.x <= p.x && e.y >= p.y){
+         angle = Math.atan((e.y - p.y)/(e.x - p.x)) + Math.PI;
+       }
+       e.dir = angle;
+
+       var x =  e.speed * Math.cos(e.dir);
+       var y = e.speed * Math.sin(e.dir);
+
+       e.x = e.x + x;
+       e.y = e.y + y;
+     }
+  }
 }
 
 
