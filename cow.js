@@ -1,13 +1,14 @@
 var c0Img = new Image();
-
-
+var c1Img = new Image();
+var c2Img = new Image();
+var c3Img = new Image();
 
 $(document).ready(function() {
 
-c0Img.src = "assets/sprites/cow.png"
-
-
-
+c0Img.src = "assets/sprites/cows/cow0.png"
+c1Img.src = "assets/sprites/cows/cow1.png"
+c2Img.src = "assets/sprites/cows/cow2.png"
+c3Img.src = "assets/sprites/cows/cow3.png"
 });
 
 
@@ -29,7 +30,7 @@ var cSpeed = 1;
 var timer = 0;
 
 
-var cows = [new cow(300,300,cSize,cSpeed,0, 0), new cow(600,300,cSize,cSpeed,1, 120), new cow(400,500,cSize,cSpeed,1, 500) ];
+var cows = [];
 
 function drawCows(context) {
   for(i = 0; i < cows.length; i++){
@@ -43,13 +44,13 @@ function drawCows(context) {
     context.drawImage(c0Img, -e.r, -e.r, 2*e.r, 2*e.r);
     break;
     case 1:
-    context.drawImage(c0Img, -e.r, -e.r, 2*e.r, 2*e.r);
+    context.drawImage(c1Img, -e.r, -e.r, 2*e.r, 2*e.r);
     break;
     case 2:
-    context.drawImage(c0Img, -e.r, -e.r, 2*e.r, 2*e.r);
+    context.drawImage(c2Img, -e.r, -e.r, 2*e.r, 2*e.r);
     break;
     case 3:
-    context.drawImage(c0Img, -e.r, -e.r, 2*e.r, 2*e.r);
+    context.drawImage(c3Img, -e.r, -e.r, 2*e.r, 2*e.r);
     break;
   }
   context.restore();
@@ -57,11 +58,6 @@ function drawCows(context) {
 }
 
 function cowTick(){
-  timer += 1;
-  if(timer > 3000){
-    addCow();
-    timer = 0;
-  }
   for(i = 0; i < cows.length; i++){
     var e = cows[i];
     e.counter += 1;
@@ -69,7 +65,7 @@ function cowTick(){
       e.counter = 0;
       shit(e);
     }
-    if(e.counter % 10 == 0){
+    if(e.counter % 15 == 0){
       switch(e.img){
         case 0:
         e.img = 1;

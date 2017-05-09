@@ -59,7 +59,7 @@ var hCount = 300;
 
 
 
-var hippies = [new hippie(100, 100, hSize, hSpeed, 2, false, 1)];
+var hippies = [];
 
 
 function hippieTick(){
@@ -100,7 +100,7 @@ function hippieTick(){
     }
   }
   hCount += 1;
-  if(hCount > 550){
+  if(hCount > 400){
     hCount = 0;
     addHippie();
   }
@@ -242,6 +242,20 @@ function moveHippies() {
 
      e.x = e.x + x;
      e.y = e.y + y;
+
+     if(e.x < -100){
+         e.x = -100;
+     }
+     if(e.x > width + 100){
+         e.x = width  + 100;
+     }
+     if(e.y < -100){
+         e.y = -100;
+     }
+     if(e.y > height  + 100){
+         e.y = height  + 100;
+     }
+
    }
   }
 }

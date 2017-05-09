@@ -11,7 +11,7 @@ pooImg.onload = function () {
 };
 pooImg.src = "assets/sprites/poop.png";
 
-var poops = [new poop(400, 100), new poop(300,150)];
+var poops = [];
 
 function drawPoops(ctx) {
   for(i = 0; i < poops.length; i++){

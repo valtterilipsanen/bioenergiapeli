@@ -23,17 +23,35 @@ function gMan(x,y,r,speed,dir) {
  this.dir = dir;
  this.img = 0;
  this.ticks = 0;
+ this.state = true;
 }
 
 var eSize = 20;
 var eSpeed = 1;
 var gCount = 0;
-
-var gMen = [new gMan(500, 500, eSize, eSpeed, 2)];
+var limit = 700;
+var gMen = [];
 
 function gManTick(){
+  switch(cows.length){
+    case 5:
+    limit = 700;
+    break;
+    case 4:
+    limit = 600;
+    break;
+    case 3:
+    limit = 500;
+    break;
+    case 2:
+    limit = 400;
+    break;
+    case 1:
+    limit = 300;
+    break;
+  }
   gCount += 1;
-  if(gCount > 600){
+  if(gCount > limit){
     gCount = 0;
     addGMan();
   }
@@ -42,8 +60,9 @@ function gManTick(){
     e.ticks += 1;
     if(e.ticks >= 1000){
       e.ticks = 0;
+      e.state = true;
     }
-    if(e.ticks % 10 == 0){
+    if(e.state && e.ticks % 10 == 0){
       switch(e.img){
         case 0:
         e.img = 1;
@@ -68,6 +87,7 @@ function gManTick(){
 function drawGMen(context) {
   for(i = 0; i < gMen.length; i++){
     var e = gMen[i];
+
     var x = e.x;
     var y = e.y;
 
@@ -101,6 +121,11 @@ function moveGMen() {
   for(i = 0; i < gMen.length; i++){
     var e = gMen[i];
     var angle;
+    if(!e.state){
+      e.speed = 0;
+    } else {
+      e.speed = eSpeed;
+    }
 
     if(cows.length > 0){
     var cow = cows[0]
@@ -135,6 +160,8 @@ function moveGMen() {
         var distance = Math.sqrt(Math.pow((e.x - cows[g].x),2) + Math.pow((e.y - cows[g].y),2));
             if(distance < e.r + cows[g].r){
                 killCow(g);
+                e.state = false;
+                e.ticks = 0;
             }
     }
 

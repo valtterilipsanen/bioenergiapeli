@@ -46,10 +46,10 @@ function playerTick(){
 function changeDir(dir) {
   switch(dir) {
     case "left":
-    p.dir = p.dir - 0.09;
+    p.dir = p.dir - 0.05;
     break;
     case "right":
-    p.dir = p.dir + 0.09;
+    p.dir = p.dir + 0.05;
     break;
   }
 }
@@ -92,9 +92,12 @@ function drawPlayer(context) {
 
 
 function movePlayer() {
-
-var x = p.speed * Math.cos(p.dir);
-var y = p.speed * Math.sin(p.dir);
+var sp = p.speed;
+if(p.img != "s"){
+  sp = 0.7 * p.speed;
+}
+var x = sp * Math.cos(p.dir);
+var y = sp * Math.sin(p.dir);
 var oldX = p.x;
 var oldY = p.y;
 
@@ -111,9 +114,8 @@ if(p.y <= p.r || p.y >= height - p.r){
 for(i = 0; i < cows.length; i++){
 var e = cows[i];
 var dist = Math.sqrt(Math.pow((p.x - e.x),2) + Math.pow((p.y - e.y),2));
-if(dist < p.r + e.r){
+if(dist < p.r + e.r - 10){
   killCow(i);
-  score -= 1;
  }
 }
 
@@ -122,7 +124,7 @@ if(dist < p.r + e.r){
  var dist = Math.sqrt(Math.pow((p.x - e.x),2) + Math.pow((p.y - e.y),2));
  if(dist < p.r + e.r){
    killHippie(i);
-   score -= 10;
+   score -= 2;
   }
 }
 
