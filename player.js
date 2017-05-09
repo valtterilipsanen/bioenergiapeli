@@ -28,6 +28,7 @@ function player(x,y,r,speed,dir) {
  this.dir = dir;
  this.ticks = 0;
  this.img = "s"
+ this.speedUp = false;
 };
 
 
